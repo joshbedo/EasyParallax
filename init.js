@@ -4,7 +4,7 @@
 
 	for(var x = 0; x < vendors.length && !window.requestAnimationFrame;++x){
 		window.requestAnimationFrame = window[vendors[x] + 'requestAnimationFrame'];
-		window.cancelAnimationFrame = window[vendors[x] + 'canvelAnimationFrame'];
+		window.cancelAnimationFrame = window[vendors[x] + 'cancelAnimationFrame'];
 	}
 
 	if(!window.requestAnimationFrame){
