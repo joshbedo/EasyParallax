@@ -29,19 +29,20 @@ var easyParallax = {
 		var bodyHeight = document.body.clientHeight,
 			imgHeight = bodyHeight / 6,
 			images = document.getElementsByClassName('parallax'),
-			imageData = document.querySelector('.parallax').dataset,
+			imageData = [],
 			imagesInner = document.querySelectorAll('.parallax > .parallax-inner'),
 			imagesOffset = [],
 			imageLength = images.length,
 			scrollTop = 0;
 
-		console.log(imageData);
 		for(var y = 0;y < imageLength;y++){
+			imageData.push(images[y].dataset);
 			imagesOffset.push(images[y].offsetTop);
 		}
 
 		for(var i = 0;i < imageLength;i++){
-			if(imageData.height) images[i].style.height = imageData.height + 'px';
+			console.log(imageData[i].height)
+			if(imageData[i].height) images[i].style.height = imageData[i].height + 'px';
 		}
 
 		window.onscroll = function() {
@@ -50,7 +51,7 @@ var easyParallax = {
 		function parallax(){
 			for(var x = 0;x < imageLength;x++){
 				if(scrollTop > imagesOffset[x] - bodyHeight){
-					var bpos = (scrollTop) / 2 + parseInt(imageData.speed);
+					var bpos = (scrollTop) / 2 + parseInt(imageData[x].speed);
                 	imagesInner[x].style.webkitTransform = 'translate3d(0,' + bpos + 'px,0)';
                 	imagesInner[x].style.transform = 'translate3d(0,' + bpos + 'px,0)';
 				}
