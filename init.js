@@ -31,6 +31,7 @@ var easyParallax = {
 			images = document.getElementsByClassName('parallax'),
 			imageData = [],
 			imagesInner = document.querySelectorAll('.parallax > .parallax-inner'),
+			imagesContent = document.querySelectorAll('.parallax > .parallax-content'),
 			imagesOffset = [],
 			imageLength = images.length,
 			scrollTop = 0;
@@ -41,7 +42,6 @@ var easyParallax = {
 		}
 
 		for(var i = 0;i < imageLength;i++){
-			console.log(imageData[i].height)
 			if(imageData[i].height) images[i].style.height = imageData[i].height + 'px';
 		}
 
@@ -54,6 +54,13 @@ var easyParallax = {
 					var bpos = (scrollTop) / 2 + parseInt(imageData[x].speed);
                 	imagesInner[x].style.webkitTransform = 'translate3d(0,' + bpos + 'px,0)';
                 	imagesInner[x].style.transform = 'translate3d(0,' + bpos + 'px,0)';
+
+                	if(imagesContent[x]){
+                		imagesContent[x].style.webkitTransform = 'translate3d(0,' + bpos + 'px,0)';
+                		imagesContent[x].style.transform = 'translate3d(0,' + bpos + 'px,0)';
+	                	imagesContent[x].style.opacity = scrollTop / 200;
+                	}
+
 				}
 			}
 			requestAnimationFrame(parallax);
